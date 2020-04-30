@@ -2,24 +2,24 @@
   <div class="col-md-4 text-center card border-0">
     <div class="card-header">
       <img
-      :src="image"
-      :alt="title">
+        :src="image"
+        :alt="title">
       <h3 class="h4 mt-2">
         {{ title }}
       </h3>
     </div>
     <div class="card-body d-flex flex-column justify-content-between">
       <p class="text-muted text-left mb-4">
-      {{ excerpt }}
-    </p>
-    <p class="text-muted">
-      Estimated reading time {{ readingTime }} minutes.
-    </p>
+        {{ excerpt }}
+      </p>
+      <p class="text-muted">
+        Estimated reading time {{ readingTime }} minutes.
+      </p>
     </div>
     <div class="card-footer">
       <a
-      class="btn btn-outline-primary"
-      :href="url">Learn more</a>
+        class="btn btn-outline-primary"
+        :href="url">Learn more</a>
     </div>
   </div>
 </template>
