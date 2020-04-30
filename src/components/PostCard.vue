@@ -1,20 +1,26 @@
 <template>
-  <div class="col-md-4 text-center">
-    <img
+  <div class="col-md-4 text-center card border-0">
+    <div class="card-header">
+      <img
       :src="image"
       :alt="title">
-    <h3 class="h4 mt-3">
-      {{ title }}
-    </h3>
-    <p class="text-muted mb-5">
+      <h3 class="h4 mt-2">
+        {{ title }}
+      </h3>
+    </div>
+    <div class="card-body d-flex flex-column justify-content-between">
+      <p class="text-muted text-left mb-4">
       {{ excerpt }}
     </p>
-    <p class="text-muted mb-5">
+    <p class="text-muted">
       Estimated reading time {{ readingTime }} minutes.
     </p>
-    <a
+    </div>
+    <div class="card-footer">
+      <a
       class="btn btn-outline-primary"
       :href="url">Learn more</a>
+    </div>
   </div>
 </template>
 
@@ -66,7 +72,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-img {
-  max-width: 100%;
-}
+  .card-header {
+    height: 250px;
+  }
 </style>
