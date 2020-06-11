@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <!--<img alt="Vue logo" src="./assets/logo.png">-->
-    <Header></Header>
+    <!-- <Header></Header>-->
   </div>
 </template>
 
 <script>
-import Header from './components/Header/index.vue';
+// import Header from './components/Header/index.vue';
 
 export default {
   name: 'App',
   components: {
-    Header,
+    // Header,
   },
 };
 </script>

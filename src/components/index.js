@@ -3,3 +3,4 @@ export { default as MProgressBar } from './MProgressBar/index.vue';
 export { default as MShadowScroll } from './MShadowScroll/index.vue';
 export { default as MStepper } from './MStepper/index.vue';
 export { default as MSwitchButton } from './MSwitchButton/index.vue';
+export { default as Header } from './Header/index.vue';
