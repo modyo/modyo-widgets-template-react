@@ -1,10 +1,10 @@
 {
-  "name": "@modyo/project-base",
+  "name": "@modyo/project-base-test-commons",
   "version": "1.0.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "./dist/@modyo/project-base.common.js",
+  "main": "./dist/@modyo/project-base-test-commons.common.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name  @modyo/project-base src/entry.js --fix",
+    "build:lib": "vue-cli-service build --target lib --name  @modyo/project-base-test-commons src/entry.js --fix",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "lint:style": "stylelint src/components",
