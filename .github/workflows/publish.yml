@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies with yarn
       run: yarn
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.TOKEN_REG }}
+        NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This gets generated automatically
     - name: Build Library
       run: yarn build:lib
@@ -26,9 +26,12 @@ jobs:
           echo $GITHUB_REF
           TAG=$(echo $GITHUB_REF | cut -c 11-)
           echo $TAG
-          git config user.email "operations@modyo.com"
-          git config user.name "Modyo"
+          git config user.email $EMAIL
+          git config user.name $USER_NAME
           yarn version --new-version  $TAG
+      env:
+        USER_NAME: ${{ secrets.USER }}
+        EMAIL: ${{ secrets.EMAIL }}
     - name: Publish to GitHub Package Registry
       run: yarn publish
       env:
