@@ -4,11 +4,11 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "./dist/@modyo/project-base.common.js",
+  "main": "./dist/@modyo/modyo-news-test.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:modyo/modyo-widgets-project-vue.git"
+    "url": "git@github.com:modyo/modyo-news-test.git"
   },
   "private": false,
   "scripts": {
