@@ -1,0 +1,68 @@
+{
+  "name": "modyo-widgets-project-react",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@craco/craco": "^5.6.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@modyo/sdk": "^1.0.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "html-react-parser": "^0.13.0",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "craco:start": "craco start",
+    "build": "react-scripts build",
+    "craco:build": "craco build",
+    "test": "react-scripts test",
+    "craco:test": "craco test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .jsx,.js src",
+    "lint:style": "stylelint 'src/**/*.(vue|htm|html|css|sass|less|scss|stylus)'",
+    "modyo-push": "modyo-cli push --publish"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "@modyo/cli": "^3.1.15",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.4",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "glob-all": "^3.2.1",
+    "husky": "^4.2.5",
+    "purgecss-webpack-plugin": "^2.3.0",
+    "stylelint": "^13.6.1",
+    "stylelint-config-twbs-bootstrap": "^2.0.3",
+    "validate-branch-name": "^1.0.6"
+  }
+}
