@@ -26,7 +26,7 @@
     "craco:start": "craco start",
     "build": "react-scripts build",
     "craco:build": "craco build",
-    "test": "react-scripts test",
+    "test:unit": "react-scripts test",
     "craco:test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx,.js src",
