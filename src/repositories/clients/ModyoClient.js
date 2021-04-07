@@ -1,4 +1,9 @@
 import { Client } from '@modyo/sdk';
 import { accountUrl } from './config/modyo.config';
 
-export default new Client(accountUrl, 'es');
+import liquidParser from '../../liquid/liquidParser';
+
+// Get page language from modyo site using liquid
+const LANG = liquidParser.parse('{{site.language}}');
+
+export default new Client(accountUrl, LANG);

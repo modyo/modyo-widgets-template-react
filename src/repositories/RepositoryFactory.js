@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import PostRepository from './PostRepository';
 import ApiRepository from './ApiRepository';
 
