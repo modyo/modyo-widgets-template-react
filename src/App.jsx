@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
-import './App.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'react-i18next';
 import Repository from './repositories/RepositoryFactory';
 import liquidParser from './liquid/liquidParser';
-
 import ExampleComponent from './components/ExampleComponent/component.jsx';
+
+import './App.scss';
 
 const PostRepository = Repository.get('posts');
 
 function App() {
   const {t} = useTranslation();
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState();
-  const year = 2020;
+  const [loading, setLoading] = useState(true);
+  const year = new Date().getFullYear();
   const siteName = liquidParser.parse('{{site.name}}');
   const getPosts = async () => {
     setLoading(true);
@@ -112,9 +112,10 @@ function App() {
             <div className="col-md-2" />
             <div className="col-md-8 text-center">
               <div className="row">
-                {
-                  posts.map((post) => (
-                    <ExampleComponent key={post.id} loading={loading} post={post} />
+                { loading
+                  ? (<h1>cargando</h1>)
+                  : posts.map((post) => (
+                    <ExampleComponent key={post.id} post={post} />
                   ))
                 }
               </div>

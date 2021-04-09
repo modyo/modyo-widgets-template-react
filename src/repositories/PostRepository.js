@@ -1,12 +1,12 @@
-/* eslint-disable import/no-anonymous-default-export */
 import ModyoSdk from './clients/ModyoClient';
 
-import { space, type } from './clients/config/modyo.config';
+const space = 'testing';
+const type = 'posts';
 
 const content = ModyoSdk.getContentType(space, type);
 const privateContent = ModyoSdk.getContentType(space, type, false);
 
-export default {
+const PostRepository = {
   get() {
     return content.getEntries();
   },
@@ -25,3 +25,5 @@ export default {
     return privateContent.getEntry(id);
   },
 };
+
+export default PostRepository
