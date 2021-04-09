@@ -1,6 +1,6 @@
 import './style.scoped.scss';
 import parse from 'html-react-parser';
-import { accountUrl, sitePath } from '../../repositories/clients/config/modyo.config';
+import liquidParser from '../../liquid/liquidParser';
 
 // eslint-disable-next-line react/prop-types
 export default function ExampleComponent({ post }) {
@@ -9,7 +9,9 @@ export default function ExampleComponent({ post }) {
     // eslint-disable-next-line react/prop-types
     image, imageAlt, title, description, slug,
   } = post;
-  const linkFull = `${accountUrl}/${sitePath}/${slug}`;
+  const siteUrl = liquidParser.parse('{{site.url}}');
+  const contentViewPAth = 'contenido'
+  const linkFull = `${siteUrl}/${contentViewPAth}/${slug}`;
 
   return (
     <div className="col-md-4 text-center">
