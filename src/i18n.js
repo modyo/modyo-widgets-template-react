@@ -26,7 +26,9 @@ i18n
     lng: LANG,
     fallbackLng: 'es',
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false, // react already safes from xss
+      prefix: "{{{", // changed to avoid conflict with Liquid interpolation
+      suffix: "}}}" // changed to avoid conflict with Liquid interpolation
     }
   });
 
