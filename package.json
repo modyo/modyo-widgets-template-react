@@ -32,8 +32,8 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx,.js src",
-    "lint:style": "stylelint 'src/**/*.(vue|htm|html|css|sass|less|scss|stylus)'",
-    "modyo-push": "modyo-cli push --publish"
+    "lint:style": "stylelint 'src/**/*.(htm|html|css|sass|less|scss|stylus)'",
+    "modyo-push": "craco build && modyo-cli push"
   },
   "eslintConfig": {
     "extends": [
