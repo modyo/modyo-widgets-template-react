@@ -3,9 +3,6 @@ const PURGE_CSS = require('@fullhuman/postcss-purgecss');
 const AUTOPREFIXER = require('autoprefixer');
 
 module.exports = {
-  plugins: [
-    {plugin: require('craco-plugin-scoped-css')}
-  ],
   style: {
     postcss: {
       plugins:
