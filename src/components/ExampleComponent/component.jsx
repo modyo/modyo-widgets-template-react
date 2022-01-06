@@ -14,7 +14,9 @@ export default function ExampleComponent({ post }) {
   const linkFull = `${siteUrl}/${contentViewPAth}/${slug}`;
 
   return (
-    <div className="col-md-4 text-center">
+    <div
+      className="col-md-4 text-center"
+      id="card">
       <img
         src={image}
         alt={imageAlt}
