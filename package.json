@@ -14,8 +14,8 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
+    "axios": "^0.24.0",
+    "bootstrap": "^4.6.1",
     "html-react-parser": "^1.2.4",
     "i18next": "^20.2.1",
     "liquidjs": "^9.23.3",
@@ -32,8 +32,8 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx,.js src",
-    "lint:style": "stylelint 'src/**/*.(vue|htm|html|css|sass|less|scss|stylus)'",
-    "modyo-push": "modyo-cli push --publish"
+    "lint:style": "stylelint 'src/**/*.(htm|html|css|sass|less|scss|stylus)'",
+    "modyo-push": "craco build && modyo-cli push"
   },
   "eslintConfig": {
     "extends": [
@@ -54,9 +54,8 @@
     ]
   },
   "devDependencies": {
-    "@modyo/cli": "^3.1.18",
-    "craco-plugin-scoped-css": "^1.1.1",
-    "node-sass": "^5.0.0",
+    "@modyo/cli": "^3.1.25",
+    "sass": "^1.49.10",
     "stylelint": "^13.12.0",
     "stylelint-config-twbs-bootstrap": "^2.1.0"
   }
