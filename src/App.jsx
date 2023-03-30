@@ -17,7 +17,7 @@ function App() {
     testSDK().then((result) => {
       console.log('result: ', result);
     });
-  });
+  }, []);
 
   return (
     <div className="App">
