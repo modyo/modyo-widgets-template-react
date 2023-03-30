@@ -3,9 +3,7 @@ import { Liquid } from 'liquidjs';
 import localLiquidVariables from './local-liquid-variables';
 
 let engine;
-const developmentMode = import.meta.env.DEV;
-
-const LocalLiquid = developmentMode ? Liquid : { Liquid: null };
+const LocalLiquid = import.meta.env.DEV ? Liquid : { Liquid: null };
 
 if (LocalLiquid) {
   engine = new LocalLiquid({
