@@ -1,6 +1,7 @@
 import './App.css';
 import { Client } from '@modyo/sdk/dist/index';
 import { useEffect } from 'react';
+import liquidParser from './liquid/liquidParser';
 
 function App() {
   const testSDK = async () => {
@@ -12,6 +13,7 @@ function App() {
   };
 
   useEffect(() => {
+    console.log('liquid: ', liquidParser.parse('{{account.url}}'));
     testSDK().then((result) => {
       console.log('result: ', result);
     });
