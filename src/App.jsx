@@ -1,22 +1,18 @@
 import './App.css';
-import { Client } from '@modyo/sdk/dist/index';
 import { useEffect } from 'react';
-import liquidParser from './liquid/liquidParser';
+import RepositoryFactory from './repositories/RepositoryFactory';
+
+const PostsRepository = RepositoryFactory.get('posts');
 
 function App() {
   const testSDK = async () => {
-    const client = new Client('https://fed-team.modyo.cloud', 'es');
-
-    const content = client.getContentType('animals', 'game');
-    const result = await content.getEntries();
+    const result = await PostsRepository.getTop(1, 20);
+    console.log('result: ', result);
     return result;
   };
 
   useEffect(() => {
-    console.log('liquid: ', liquidParser.parse('{{account.url}}'));
-    testSDK().then((result) => {
-      console.log('result: ', result);
-    });
+    testSDK();
   }, []);
 
   return (

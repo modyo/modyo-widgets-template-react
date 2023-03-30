@@ -1,6 +1,6 @@
 export default {
   account: {
-    url: 'https://fed-team.modyo.cloud/222',
+    url: 'https://fed-team.modyo.cloud',
   },
   user: {
     access_token: '',
