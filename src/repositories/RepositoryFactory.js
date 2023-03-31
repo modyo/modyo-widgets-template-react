@@ -1,11 +1,9 @@
 import PostsRepository from './PostsRepository';
-// import ApiRepository from './ApiRepository';
-// import ModyoProfileRepository from './ModyoProfileRepository';
+import ApiRepository from './ApiRepository';
 
 const repositories = {
   posts: PostsRepository,
-  // api: ApiRepository,
-  // profile: ModyoProfileRepository,
+  api: ApiRepository,
 };
 export default {
   get: (name) => repositories[name],

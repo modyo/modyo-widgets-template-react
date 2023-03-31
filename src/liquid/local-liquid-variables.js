@@ -13,5 +13,8 @@ export default {
     lang: 'es',
   },
   assets: [],
-  vars: {},
+  vars: {
+    'realm-path': '/api/profile',
+    'services-url': '',
+  },
 };
