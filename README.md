@@ -10,6 +10,12 @@
 
 ## Scripts
 
+### Install dependencies
+
+```
+npm i
+```
+
 ### Local development
 
 ```

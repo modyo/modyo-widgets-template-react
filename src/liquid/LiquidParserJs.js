@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Liquid } from 'liquidjs';
 import localLiquidVariables from './local-liquid-variables';
 
