@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { useEffect } from 'react';
 import RepositoryFactory from './repositories/RepositoryFactory';
 
@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="app">
       <h1>Modyo</h1>
       <h2>React template</h2>
     </div>

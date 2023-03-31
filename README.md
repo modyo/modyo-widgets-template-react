@@ -48,9 +48,9 @@ npm run modyo-serve
 - [ ] PostCss
 - [ ] Commons
 - [ ] Bootstrap 5
-- [ ] sass
 - [ ] Store
 - [ ] GitHub actions
+- [x] sass
 - [x] Api repository
 - [x] Liquid parse
 - [x] Modyo SDK
