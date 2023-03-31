@@ -17,8 +17,14 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Modyo</h1>
-      <h2>React template</h2>
+      <div className="container text-center py-5">
+        <div className="row">
+          <div className="col">
+            <h1>Modyo</h1>
+            <h2>React template</h2>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
