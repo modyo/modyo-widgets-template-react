@@ -44,11 +44,11 @@ npm run modyo-serve
 ## checklist
 
 - [ ] modyo-serve
-- [ ] Test
 - [ ] PostCss
 - [ ] Commons
 - [ ] Store
 - [ ] GitHub actions
+- [x] Test
 - [x] Bootstrap 5
 - [x] sass
 - [x] Api repository
