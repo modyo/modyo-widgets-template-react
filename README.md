@@ -43,11 +43,11 @@ npm run modyo-serve
 
 ## checklist
 
-- [ ] enzymejs / Vitest
+- [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
 - [ ] Parsear data en el repository (Enviar y recibir)
-- [ ] PostCss
 - [ ] Commons
 - [ ] Store (Probar Flux o context con una estructura propuesta)
+- [x] PostCss
 - [x] GitHub actions
 - [x] Test
 - [x] Bootstrap 5
