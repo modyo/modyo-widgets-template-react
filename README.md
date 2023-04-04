@@ -43,10 +43,11 @@ npm run modyo-serve
 
 ## checklist
 
-- [ ] modyo-serve
+- [ ] enzymejs / Vitest
+- [ ] Parsear data en el repository (Enviar y recibir)
 - [ ] PostCss
 - [ ] Commons
-- [ ] Store
+- [ ] Store (Probar Flux o context con una estructura propuesta)
 - [x] GitHub actions
 - [x] Test
 - [x] Bootstrap 5
