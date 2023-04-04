@@ -48,8 +48,8 @@ npm run modyo-serve
 - [ ] Parsear data en el repository (Enviar y recibir)
 - [ ] Commons
 - [ ] Store (Probar Flux o context con una estructura propuesta)
+- [ ] GitHub actions
 - [x] PostCss
-- [x] GitHub actions
 - [x] Test
 - [x] Bootstrap 5
 - [x] sass
