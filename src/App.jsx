@@ -1,27 +1,15 @@
 import './App.scss';
-import { useEffect } from 'react';
-import RepositoryFactory from './repositories/RepositoryFactory';
-
-const PostsRepository = RepositoryFactory.get('posts');
+import ProjectInput from './components/ProjectInput/ProjectInput';
 
 function App() {
-  const testSDK = async () => {
-    const result = await PostsRepository.getTop(1, 20);
-    console.log('result: ', result);
-    return result;
-  };
-
-  useEffect(() => {
-    testSDK();
-  }, []);
-
   return (
-    <div className="app">
-      <div className="container text-center py-5">
+    <div className="app text-center py-5">
+      <div className="container">
         <div className="row">
           <div className="col">
             <h1>Modyo</h1>
             <h2>React template</h2>
+            <ProjectInput />
           </div>
         </div>
       </div>

@@ -43,6 +43,7 @@ npm run modyo-serve
 
 ## checklist
 
+- [ ] Storybook
 - [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
 - [ ] Parsear data en el repository (Enviar y recibir)
 - [ ] Commons
