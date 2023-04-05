@@ -49,7 +49,7 @@ npm run modyo-serve
 - [ ] Commons
 - [ ] Store (Probar Flux o context con una estructura propuesta)
 - [ ] GitHub actions
-- [x] PostCss
+- [ ] Remove PostCss
 - [x] Test
 - [x] Bootstrap 5
 - [x] sass
