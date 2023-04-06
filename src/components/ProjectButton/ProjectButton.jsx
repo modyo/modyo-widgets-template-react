@@ -1,5 +1,5 @@
 function ProjectButton() {
-  return <button>Tesst</button>;
+  return <button type="button">Lorem ipsum</button>;
 }
 
 export default ProjectButton;
