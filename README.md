@@ -43,14 +43,16 @@ npm run modyo-serve
 
 ## checklist
 
-- [ ] Storybook
+- [ ] Storybook example
 - [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
 - [ ] Parsear data en el repository (Enviar y recibir)
 - [ ] Commons
 - [ ] Store (Probar Flux o context con una estructura propuesta)
-- [ ] GitHub actions
+- [ ] Commons GitHub actions
 - [ ] Remove PostCss
 - [ ] Readme
+- [ ] import commons styles on widgets
+- [x] Storybook
 - [x] Test
 - [x] Bootstrap 5
 - [x] sass
