@@ -50,6 +50,7 @@ npm run modyo-serve
 - [ ] Store (Probar Flux o context con una estructura propuesta)
 - [ ] GitHub actions
 - [ ] Remove PostCss
+- [ ] Readme
 - [x] Test
 - [x] Bootstrap 5
 - [x] sass
