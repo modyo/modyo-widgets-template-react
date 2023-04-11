@@ -52,9 +52,9 @@ npm run modyo-serve
 - [ ] Remove PostCss
 - [ ] Readme
 - [ ] import commons styles on widgets
-- [ ] script: "test:coverage": "vitest run --coverage",
 - [ ] script: "lint": "",
 - [ ] script: "lint:style": ""
+- [x] script: "test:coverage": "vitest run --coverage",
 - [x] Storybook
 - [x] Test
 - [x] Bootstrap 5
