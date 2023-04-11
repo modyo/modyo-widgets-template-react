@@ -75,7 +75,7 @@ jobs:
           path: ./node_modules
           key: ${{ github.sha }}-node-modules
       - name: Build Library
-        run: npm run build:lib
+        run: npm run build
       - name: Versioning
         run : |
             echo $GITHUB_REF
