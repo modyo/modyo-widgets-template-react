@@ -1,6 +1,7 @@
 import './App.scss';
 import { useEffect } from 'react';
 import RepositoryFactory from './repositories/RepositoryFactory';
+import TestComponent from './components/TestComponent';
 
 const PostsRepository = RepositoryFactory.get('posts');
 
@@ -21,7 +22,7 @@ function App() {
         <div className="row">
           <div className="col">
             <h1>Modyo</h1>
-            <h2>React template</h2>
+            <TestComponent />
           </div>
         </div>
       </div>
