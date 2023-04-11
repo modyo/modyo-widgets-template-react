@@ -1,33 +1,35 @@
 name: Linters and Test
 
 on:
-  pull_request:
-    branches:
-      - master
-      - develop
-    types: [ opened, edited, reopened, synchronize ]
   push:
     branches:
       - develop
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
-  install-node-modules:
-    name: Install Node Modules
+  install-packages:
+    name: Install Npm Packages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: '18'
-          cache: npm
+          node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@modyo'
+      - name: Cache Node_modules for parallels executions
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ./node_modules
+          key: ${{ github.sha }}-node-modules
       - name: Get npm cache directory
         id: npm-cache-dir
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v3
+      - uses: actions/cache@v2
         id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
@@ -35,44 +37,35 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install packages
-        run: npm ci
+        if: steps.npm-cache-set-path.outputs.cache-hit != 'true'
+        run: npm install
         env:
           # And add the additional registry token here:
           # FORTAWESOME_TOKEN: ${{secrets.FORTAWESOME_TOKEN}}
           NODE_AUTH_TOKEN: ${{ secrets.TOKEN_REG }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Cache Node_modules for parallels executions
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-modules
-        with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ./node_modules
-          key: ${{ github.sha }}-node-modules
   lint-js:
-    name: Linter Javascript Files
     runs-on: ubuntu-latest
-    needs: install-node-modules
+    needs: install-packages
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: '18'
-          cache: npm
+          node-version: '18.x'
+          registry-url: 'https://npm.pkg.github.com'
       - name: Get npm cache directory
         id: npm-cache-dir
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v3
+      - uses: actions/cache@v2
         id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Cache Node_modules for parallels executions
+      - name: Restore node_modules
         uses: actions/cache@v2
         env:
           cache-name: cache-modules
@@ -80,32 +73,30 @@ jobs:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ./node_modules
           key: ${{ github.sha }}-node-modules
-      - name: Execute lint JS
+      - name: Lint JS
         run: npm run lint
-  lint-css:
-    name: Linter Css Files
+  lint-styles:
     runs-on: ubuntu-latest
-    needs: install-node-modules
+    needs: install-packages
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: '18'
-          cache: npm
+          node-version: '18.x'
+          registry-url: 'https://npm.pkg.github.com'
       - name: Get npm cache directory
         id: npm-cache-dir
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v3
+      - uses: actions/cache@v2
         id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Cache Node_modules for parallels executions
+      - name: Restore node_modules
         uses: actions/cache@v2
         env:
           cache-name: cache-modules
@@ -113,34 +104,31 @@ jobs:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ./node_modules
           key: ${{ github.sha }}-node-modules
-      - name: Execute stylelint
+      - name: Lint Styles
         run: npm run lint:style
-  run-test-and-sonar-push:
-    name: Unit Test and Sonar Cloud push
+  run-tests:
+    name: Runingn test coverage
     runs-on: ubuntu-latest
-    needs: install-node-modules
+    needs: install-packages
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          fetch-depth: 0
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: npm
+          node-version: '18.x'
+          registry-url: 'https://npm.pkg.github.com'
       - name: Get npm cache directory
         id: npm-cache-dir
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v3
+      - uses: actions/cache@v2
         id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Cache Node_modules for parallels executions
+      - name: Restore node_modules
         uses: actions/cache@v2
         env:
           cache-name: cache-modules
@@ -148,8 +136,34 @@ jobs:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ./node_modules
           key: ${{ github.sha }}-node-modules
-      - name: Execute Unit Test
+      - name: Cache test results
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-test-results
+        with:
+          path: ./coverage
+          key: coverage-${{ github.sha }}-${{ github.run_id }}
+          restore-keys: coverage-${{ github.sha }}-${{ github.run_id }}
+      - name: Unit Tests
         run: npm run test:coverage
+  run-fix-paths:
+    name: Fix paths for SonarCloud
+    runs-on: ubuntu-latest
+    needs: run-tests
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: Cache test results
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-test-results
+        with:
+          path: ./coverage
+          key: coverage-${{ github.sha }}-${{ github.run_id }}-fixed
+          restore-keys: coverage-${{ github.sha }}-${{ github.run_id }}
       - name: fix code coverage paths
         working-directory: ./coverage
         run: |
@@ -161,8 +175,23 @@ jobs:
           sed -i $REPLACE_REGEX lcov.info
           sed -i $REPLACE_REGEX sonar-cloud-reporter.xml
           cat sonar-cloud-reporter.xml
+  run-sonar-push:
+    name: Sonar Cloud push data
+    runs-on: ubuntu-latest
+    needs: run-fix-paths
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - uses: actions/cache@v3
+        id: restore-fixed-path
+        with:
+          path: ./coverage
+          key: coverage-${{ github.sha }}-${{ github.run_id }}-fixed
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
