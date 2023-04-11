@@ -53,7 +53,8 @@ npm run modyo-serve
 - [ ] Readme
 - [ ] import commons styles on widgets
 - [ ] script: "lint": "",
-- [ ] script: "lint:style": ""
+- [x] stylelint
+- [x] script: "lint:style": ""
 - [x] script: "test:coverage": "vitest run --coverage",
 - [x] Storybook
 - [x] Test
