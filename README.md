@@ -47,6 +47,11 @@ npm run modyo-serve
 - [ ] Parsear data en el repository (Enviar y recibir)
 - [ ] Commons
 - [ ] Store (Probar Flux o context con una estructura propuesta)
+- [ ] test:coverage
+- [x] stylelint
+- [x] script: "lint": "",
+- [x] script: "lint:style": ""
+- [x] script: "lint:style:fix": ""
 - [x] PostCss
 - [x] GitHub actions
 - [x] Test
