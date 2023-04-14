@@ -45,8 +45,8 @@ npm run modyo-serve
 
 - [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
 - [ ] Parsear data en el repository (Enviar y recibir)
-- [ ] Commons
 - [ ] Store (Probar Flux o context con una estructura propuesta)
+- [x] Commons
 - [x] test:coverage
 - [x] stylelint
 - [x] script: "lint": "",
