@@ -45,8 +45,6 @@ npm run modyo-serve
 
 - [ ] Storybook example
 - [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
-- [ ] Parsear data en el repository (Enviar y recibir)
-- [ ] Store (Probar Flux o context con una estructura propuesta)
 - [ ] Readme
 - [x] Commons GitHub actions
 - [x] Remove PostCss
