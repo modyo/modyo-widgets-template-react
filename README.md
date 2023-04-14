@@ -61,8 +61,8 @@ npm run lint:style:fix
 
 ## checklist
 
-- [ ] Storybook example
 - [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
+- [x] Storybook example
 - [x] Readme
 - [x] Commons GitHub actions
 - [x] Remove PostCss
