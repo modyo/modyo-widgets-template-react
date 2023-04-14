@@ -19,7 +19,7 @@ npm i
 ### Local development
 
 ```
-npm run serve
+npm run storybook
 ```
 
 ### Build project
@@ -28,16 +28,34 @@ npm run serve
 npm run build
 ```
 
-### Preview
+### Run tests
 
 ```
-npm run preview
+npm run test
 ```
 
-### Push to Modyo (.env file required)
+### Run tests coverage
 
 ```
-npm run modyo-serve
+npm run test:coverage
+```
+
+### Run lint
+
+```
+npm run lint
+```
+
+### Run lint style
+
+```
+npm run lint:style
+```
+
+### Run fix lint style
+
+```
+npm run lint:style:fix
 ```
 
 
@@ -45,7 +63,7 @@ npm run modyo-serve
 
 - [ ] Storybook example
 - [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
-- [ ] Readme
+- [x] Readme
 - [x] Commons GitHub actions
 - [x] Remove PostCss
 - [x] import commons styles on widgets
