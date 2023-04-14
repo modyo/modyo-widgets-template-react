@@ -40,6 +40,36 @@ npm run preview
 npm run modyo-serve
 ```
 
+### Run tests
+
+```
+npm run test
+```
+
+### Run tests coverage
+
+```
+npm run test:coverage
+```
+
+### Run lint
+
+```
+npm run lint
+```
+
+### Run lint style
+
+```
+npm run lint:style
+```
+
+### Run fix lint style
+
+```
+npm run lint:style:fix
+```
+
 
 ## checklist
 
