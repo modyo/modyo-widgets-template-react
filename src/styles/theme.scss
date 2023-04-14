@@ -1,7 +1,34 @@
-@import "/node_modules/bootstrap/dist/css/bootstrap.css";
 @import "./variables";
 
-body {
-  font-size: 16px;
+.project-bg-black {
+  background-color: $color-black;
+}
+
+.project-color-black {
   color: $color-black;
 }
+
+.project-bg-white {
+  background-color: $color-white;
+}
+
+.project-color-white {
+  color: $color-white;
+}
+
+.project-bg-primary {
+  background-color: $color-primary;
+}
+
+.project-color-primary {
+  color: $color-primary;
+}
+
+.project-bg-secondary {
+  background-color: $color-secondary;
+}
+
+.project-color-secondary {
+  color: $color-secondary;
+}
+
