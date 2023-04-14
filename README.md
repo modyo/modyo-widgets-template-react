@@ -46,12 +46,11 @@ npm run modyo-serve
 - [ ] Storybook example
 - [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
 - [ ] Parsear data en el repository (Enviar y recibir)
-- [ ] Commons
 - [ ] Store (Probar Flux o context con una estructura propuesta)
-- [ ] Commons GitHub actions
-- [ ] Remove PostCss
 - [ ] Readme
-- [ ] import commons styles on widgets
+- [x] Commons GitHub actions
+- [x] Remove PostCss
+- [x] import commons styles on widgets
 - [x] script: "lint": "",
 - [x] stylelint
 - [x] script: "lint:style": ""
