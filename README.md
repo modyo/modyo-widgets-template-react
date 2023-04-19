@@ -61,7 +61,7 @@ npm run lint:style:fix
 
 ## checklist
 
-- [ ] enzymejs / Vitest (https://enzymejs.github.io/enzyme/)
+- [X] enzymejs (No soportada en React 18 y se recomienda usar RTL)
 - [x] Storybook example
 - [x] Readme
 - [x] Commons GitHub actions
