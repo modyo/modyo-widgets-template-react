@@ -56,7 +56,7 @@
   "devDependencies": {
     "@modyo/cli": "^3.1.25",
     "sass": "^1.49.10",
-    "stylelint": "^13.12.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-twbs-bootstrap": "^2.1.0"
   }
 }
