@@ -75,6 +75,7 @@ npm run lint:style:fix
 
 - [ ] Parsear data en el repository (Enviar y recibir)
 - [ ] Store (Probar Flux o context con una estructura propuesta)
+- [ ] Router
 - [X] enzymejs (No soportada en React 18 y se recomienda usar RTL)
 - [x] Commons
 - [x] test:coverage
