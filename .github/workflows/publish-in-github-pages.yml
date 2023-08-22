@@ -84,20 +84,20 @@ jobs:
       with:
         name: storybook-static
         path: ${{ runner.temp }}/storybook-static.tar
-    push-to-github-pages:
-      needs: generate-storybook-artifact
-      name: Push to github pages
-      runs-on: ubuntu-latest
-      permissions:
-        pages: write
-        id-token: write
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
-      steps:
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v2.0.4
-          with:
-            artifact_name: storybook-static
+  push-to-github-pages:
+    needs: generate-storybook-artifact
+    name: Push to github pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2.0.4
+        with:
+          artifact_name: storybook-static
             # preview: "true"
