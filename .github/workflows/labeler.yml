@@ -2,13 +2,8 @@ name: Multi Labeler
 on:
   pull_request:
     types: [ opened, edited, synchronize, ready_for_review ]
-    branches: [ master, develop ]
+    branches: [ main ]
 
 jobs:
-  labeler:
-    name: Labeler
-    runs-on: ubuntu-latest
-    steps:
-      - uses: fuxingloh/multi-labeler@v1
-        with:
-          config-path: .github/labeler.yml
+  call-labeler:
+    uses: modyo-connect/workflows/.github/workflows/labeler.yml@v1

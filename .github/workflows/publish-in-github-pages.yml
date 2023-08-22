@@ -1,0 +1,9 @@
+name: Publish Commons in git Registry
+on:
+  release:
+    types: [published]
+jobs:
+  publish-to-gh-registry:
+    uses: modyo-connect/workflows/.github/workflows/widgets-publish-commons-library.yml@main
+    with:
+      legacy-peer-deps: true
