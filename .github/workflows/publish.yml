@@ -70,7 +70,7 @@ jobs:
     - name: Versioning
       run : |
           echo $GITHUB_REF
-          TAG=$(echo $GITHUB_REF | cut -c 11-)
+          TAG=1.0.0
           echo $TAG
           git config user.email "support+actions@github.com"
           git config user.name "github-actions-bot"
