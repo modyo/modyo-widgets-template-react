@@ -1,4 +1,4 @@
-name: Deploy Gh Pages
+name: Deploy Package to Github Registry
 
 on:
   push:
