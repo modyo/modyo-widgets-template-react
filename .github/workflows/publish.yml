@@ -5,7 +5,84 @@ on:
     branches:
       - feat/vite-commons
 jobs:
-    deploy-to-gh-pages:
-      uses: modyo-connect/workflows/.github/workflows/widgets-deploy-github-page.yml@main
+    #deploy-to-gh-pages:
+    #  uses: modyo-connect/workflows/.github/workflows/widgets-deploy-github-page.yml@main
+    #  printed result of centralized wf
+  install-dependencies:
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+    concurrency: ci-${{ github.ref }}
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: Cache Node_modules based on package-lock changes
+      id: cache-node-modules
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-modules
       with:
-        legacy-peer-deps: true
+        path: ./node_modules
+        lookup-only: true
+        key: ${{ hashFiles('**/package-lock.json') }}-node-modules
+    - name: setup node.js v16
+      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@modyo'
+        cache: npm
+    - name: Clean install dependencies full
+      run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This gets generated automatically
+
+  build-and-publish:
+    needs: install-dependencies
+    name: Build and publish to private github registry
+    runs-on: ubuntu-latest
+    environment:
+      name: Github Registry
+      url: ${{steps.set-url.outputs.url}}
+    permissions:
+      contents: write
+      packages: write
+    steps:
+    - uses: actions/checkout@v3
+    - name: setup node.js v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@modyo'
+        cache: npm
+    - name: Restore Cache Node_modules based on package-lock changes
+      id: cache-node-modules
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-modules
+      with:
+        path: ./node_modules
+        key: ${{ hashFiles('**/package-lock.json') }}-node-modules
+    - name: Build Library
+      run: npm run build:lib
+    - name: Versioning
+      run : |
+          echo $GITHUB_REF
+          TAG=$(echo $GITHUB_REF | cut -c 11-)
+          echo $TAG
+          git config user.email "support+actions@github.com"
+          git config user.name "github-actions-bot"
+          npm version $TAG --allow-same-version --no-git-tag-version
+      env:
+        GH_TOKEN: ${{ github.token }}
+    - name: Publish to GitHub Package Registry
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set Url
+      id: set-url
+      run: |
+        echo "url=https://github.com/orgs/${GITHUB_REPOSITORY_OWNER}/packages?repo_name=${GITHUB_REPOSITORY/$GITHUB_REPOSITORY_OWNER\//}" >> "$GITHUB_OUTPUT"
+        

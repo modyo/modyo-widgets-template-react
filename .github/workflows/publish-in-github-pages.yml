@@ -1,9 +1,103 @@
-name: Publish Commons in git Registry
+name: Deploy Gh Pages
+
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - feat/vite-commons
 jobs:
-  publish-to-gh-registry:
-    uses: modyo-connect/workflows/.github/workflows/widgets-publish-commons-library.yml@main
-    with:
-      legacy-peer-deps: true
+    #deploy-to-gh-pages:
+    #  uses: modyo-connect/workflows/.github/workflows/widgets-deploy-github-page.yml@main
+    #  printed result of centralized wf
+  install-dependencies:
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+    concurrency: ci-${{ github.ref }}
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: Cache Node_modules based on package-lock changes
+      id: cache-node-modules
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-modules
+      with:
+        path: ./node_modules
+        lookup-only: true
+        key: ${{ hashFiles('**/package-lock.json') }}-node-modules
+    - name: setup node.js v16
+      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@modyo'
+        cache: npm
+    - name: Clean install dependencies full
+      run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This gets generated automatically
+
+  build-github-page-static:
+    needs: install-dependencies
+    name: Build Static Storybook
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      deployments: write
+      pull-requests: write
+    steps:
+    - uses: actions/checkout@v3
+    - name: setup node.js v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@modyo'
+        cache: npm
+    - name: Restore Cache Node_modules based on package-lock changes
+      id: cache-node-modules
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-modules
+      with:
+        path: ./node_modules
+        key: ${{ hashFiles('**/package-lock.json') }}-node-modules
+    - name: Build Static Storybook
+      run: npm run build-storybook -- --disable-telemetry --quiet
+    - name: Archive artifact
+      env:
+        INPUT_PATH: storybook-static
+      run: |
+        chmod -c -R +rX "storybook-static" | while read line; do
+          echo "::warning title=Invalid file permissions automatically fixed::$line"
+        done
+        tar \
+          --dereference --hard-dereference \
+          --directory "storybook-static" \
+          -cvf "$RUNNER_TEMP/storybook-static.tar" \
+          --exclude=.git \
+          --exclude=.github \
+            .
+    - name: Upload artifact
+      uses: actions/upload-artifact@main
+      with:
+        name: storybook-static
+        path: ${{ runner.temp }}/storybook-static.tar
+    push-to-github-pages:
+      needs: generate-storybook-artifact
+      name: Push to github pages
+      runs-on: ubuntu-latest
+      permissions:
+        pages: write
+        id-token: write
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      steps:
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v2.0.4
+          with:
+            artifact_name: storybook-static
+            # preview: "true"
