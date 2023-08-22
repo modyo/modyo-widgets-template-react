@@ -17,6 +17,7 @@
   "scripts": {
     "serve": "vite",
     "build": "vite build",
+    "build:lib": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
