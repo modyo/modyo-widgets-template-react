@@ -38,7 +38,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This gets generated automatically
 
-  build-github-page-static:
+  generate-storybook-artifact:
     needs: install-dependencies
     name: Build Static Storybook
     runs-on: ubuntu-latest
